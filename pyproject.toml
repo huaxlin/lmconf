@@ -30,7 +30,9 @@ langchain = [
 ]
 
 test = [
-  "pytest"
+  "pytest",
+  "requests-mock",
+  "pytest-httpx"
 ]
 dev = [
   "black",
