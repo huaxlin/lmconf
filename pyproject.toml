@@ -5,20 +5,30 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["src/"]
 
-[tool.setuptools.dynamic]
-version = {attr = "lmconf.__version__"}
-
 [project]
 name = "lmconf"
 authors = [{ name = "huaxlin", email = "huaxlin33@gmail.com" }]
 readme = {file = "README.md", content-type = "text/markdown"}
-dynamic = ["version"]
+version = "0.0.1"
 requires-python = ">=3.8"
+dependencies = [
+  "pydantic>=2",
+]
 
 [project.urls]
 Home = "https://github.com/huaxlin/lmconf"
 
 [project.optional-dependencies]
+demo = [
+  "pydantic-settings",
+]
+# integrations
+langchain = [
+  "langchain>0.2",
+  "langchain-community",
+  "langchain-openai",
+]
+
 test = [
   "pytest"
 ]
