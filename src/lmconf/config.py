@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 
 class LLMConfBase(BaseModel):
-    provider: str = Field(description='e.g. "openai", "tongyi", "azure_openai"')
+    provider: str = Field(description='e.g. "ollama", "openai", "tongyi", "azure_openai"')
     model: str = Field(description="default model if not set")
 
     def create_langchain_chatmodel(self, *args, **kwargs):
@@ -14,7 +14,7 @@ class LLMConfBase(BaseModel):
         raise NotImplementedError()
 
 
-class OpenaiCompatibleLLMConf(LLMConfBase):
+class OpenAICompatibleLLMConf(LLMConfBase):
     api_key: Optional[str] = None
     base_url: Optional[str] = None
 

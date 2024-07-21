@@ -1,6 +1,6 @@
 import json
 
-from lmconf.config import OpenaiCompatibleLLMConf
+from lmconf.config import OpenAICompatibleLLMConf
 from pytest_httpx import HTTPXMock
 
 
@@ -8,7 +8,7 @@ def test_llmconf_openai_create_lc_chat_model(httpx_mock: HTTPXMock):
     from langchain_openai import ChatOpenAI
     from langchain_core.messages import AIMessage
 
-    openai_llmconf = OpenaiCompatibleLLMConf(
+    openai_llmconf = OpenAICompatibleLLMConf(
         provider="openai",
         model="gpt-3.5-turbo",
         api_key="sk-1234",

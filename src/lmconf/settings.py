@@ -1,59 +1,52 @@
-from typing import Dict, Optional
+from typing import Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
+from typing_extensions import TypedDict
 
-from lmconf.config import LLMConfBase, OpenaiCompatibleLLMConf
+from lmconf.config import LLMConfBase, OpenAICompatibleLLMConf
+from lmconf.llm_configs.azure_openai import AzureOpenAILLMConf
+from lmconf.llm_configs.tongyi import TongyiLLMConf
+
+
+class NamedLLMConf(TypedDict):
+    name: str
+    conf: Union[AzureOpenAILLMConf, TongyiLLMConf, OpenAICompatibleLLMConf] = Field(
+        discriminator="provider"
+    )
 
 
 class LMConfig(BaseModel):
-    """
-    ```json
-    {
-        "lm_config.x": {"foo": ["azure_je"], // will use default model: gpt-35-turbo
-                        "bar": ["azure_us","gpt-4"],  // use specific model: gpt-4
-                        "egg": ["zh_llm"]},  // will use default model: qwen-turbo
-        "lm_config.config_list": {
-          "azure_je": {"provider": "azure_openai", "model": "gpt-35-turbo", ...},
-          "azure_us": {"provider": "azure_openai", "model": "gpt-35-turbo", ...},
-          "zh_llm": {"provider": "tongyi", "model": "qwen-turbo", ...},
-        }
-    }
-    ```
-    """
-
-    x: dict = Field(default_factory=dict)
-    # named-provider -> llm-config(provider, model, api_key, base_url, ...)
-    #  TODO: build LMConf instance by provider
-    config_list: Dict[str, OpenaiCompatibleLLMConf] = Field(default_factory=dict)
+    x: Dict[str, List[str]] = Field(default_factory=dict)
+    config_list: List[NamedLLMConf] = Field(default_factory=list)
 
     def get(
         self,
-        name: Optional[str] = None,
-        named_provider: Optional[str] = None,
-        model: Optional[str] = None,
+        named_functionality: Optional[str] = None,
+        named_config: Optional[str] = None,
+        which_model: Optional[str] = None,
     ) -> LLMConfBase:
         """
         Args:
-            name (str): the named of function which uses the specific LLM from the config.
-            named_provider (str): if not use named of function, use this named of the provider to get the LLMConf object.
+            named_functionality (str): the named of function which uses the specific LLM from the config.
+            named_config (str): if not use named of function, use this named of the provider to get the LLMConf object.
 
         Returns:
             the LLMConf object specified by the name.
         """
-        if not name and not named_provider:
-            raise ValueError("name or named_provider must be specified")
-        if name:
-            if name not in self.x:
-                raise ValueError(f"{name} not found in lm_config.x")
-            which_llm: list = self.x[name]
-            named_provider, model = (
-                (which_llm[0], None) if len(which_llm) < 2 else which_llm
+        if not named_functionality and not named_config:
+            raise ValueError("named_functionality or named_provider must be specified")
+        if named_functionality:
+            if named_functionality not in self.x:
+                raise ValueError(f"{named_functionality} not found in lm_config.x")
+            determined_llm = self.x[named_functionality]
+            named_config, which_model = (
+                (determined_llm[0], None) if len(determined_llm) < 2 else determined_llm
             )
-
-        default_llm_conf = self.config_list[named_provider]  # type: ignore
-        if not model:
+        filter_ = filter(lambda d: d["name"] == named_config, self.config_list)
+        default_llm_conf = list(filter_)[0]["conf"]
+        if not which_model:
             return default_llm_conf
-        return default_llm_conf.model_copy(update={"model": model})
+        return default_llm_conf.model_copy(update={"model": which_model})
 
 
 class LMConfSettings:
