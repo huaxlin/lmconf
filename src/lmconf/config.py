@@ -7,12 +7,18 @@ class LLMConfBase(BaseModel):
     provider: str = Field(description='e.g. "openai", "tongyi", "azure_openai"')
     model: str = Field(description="default model if not set")
 
+    def create_langchain_chatmodel(self, *args, **kwargs):
+        raise NotImplementedError()
+
+    def create_langchain_llm(self, *args, **kwargs):
+        raise NotImplementedError()
+
 
 class OpenaiCompatibleLLMConf(LLMConfBase):
     api_key: Optional[str] = None
     base_url: Optional[str] = None
 
-    def create_langchain_chatmodel(self):
+    def create_langchain_chatmodel(self, **chatmodel_kwargs):
         try:
             import langchain_community  # noqa: F401
         except ImportError as exc:
@@ -46,10 +52,13 @@ class OpenaiCompatibleLLMConf(LLMConfBase):
         # TODO: inherit ChatTongyi to support override base_url
         # from langchain_community.chat_models.tongyi import ChatTongyi
         return chat_model_cls(
-            model=self.model, api_key=self.api_key, base_url=self.base_url
+            model=self.model,
+            api_key=self.api_key,
+            base_url=self.base_url,
+            **chatmodel_kwargs,
         )
 
-    def create_langchain_llm(self):
+    def create_langchain_llm(self, **llm_kwargs):
         try:
             import langchain_community  # noqa: F401
         except ImportError as exc:
@@ -79,4 +88,6 @@ class OpenaiCompatibleLLMConf(LLMConfBase):
             raise ValueError(
                 f"Unsupported convert to LangChain LLM with provider: {self.provider}"
             )
-        return llm_cls(model=self.model, api_key=self.api_key, base_url=self.base_url)
+        return llm_cls(
+            model=self.model, api_key=self.api_key, base_url=self.base_url, **llm_kwargs
+        )

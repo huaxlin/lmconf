@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 
 from pydantic import BaseModel, Field
 
@@ -23,6 +23,7 @@ class LMConfig(BaseModel):
 
     x: dict = Field(default_factory=dict)
     # named-provider -> llm-config(provider, model, api_key, base_url, ...)
+    #  TODO: build LMConf instance by provider
     config_list: Dict[str, OpenaiCompatibleLLMConf] = Field(default_factory=dict)
 
     def get(
@@ -30,7 +31,7 @@ class LMConfig(BaseModel):
         name: Optional[str] = None,
         named_provider: Optional[str] = None,
         model: Optional[str] = None,
-    ) -> Union[LLMConfBase, None]:
+    ) -> LLMConfBase:
         """
         Args:
             name (str): the named of function which uses the specific LLM from the config.
