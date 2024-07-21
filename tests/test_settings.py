@@ -8,6 +8,7 @@ from rich import print
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from langchain_core.messages import HumanMessage, AIMessage
 from lmconf import LMConfSettings
+from lmconf.llm_configs.tongyi import TongyiLLMConf
 
 
 class Settings(BaseSettings, LMConfSettings):
@@ -43,19 +44,13 @@ def settings():
             {"name": "zh_llm",
              "conf": {"provider": "tongyi",
                        "model": "qwen-max",
-                       "api_key": "${DASHSCOPE_API_KEY}"}},
-            {"name": "proxy_dashscope",
-             "conf": {"provider": "tongyi",
-                      "model": "qwen-turbo",
-                      "api_key": "${DASHSCOPE_API_KEY}",
-                      "base_url": "http://localhost:6880/api/v1"}}
+                       "api_key": "${DASHSCOPE_API_KEY}"}}
         ]'
         lmconf_lm_config__x='{
             "chatbot": ["local"],
             "rag": ["azure_us", "gpt-35-turbo"],
             "tool-use": ["azure_je", "gpt-4"],
-            "ReAct": ["zh_llm","qwen-turbo"],
-            "proxy-tongyi": ["proxy_dashscope"]
+            "ReAct": ["zh_llm","qwen-turbo"]
         }'
         """
     )
@@ -96,6 +91,7 @@ def test_tongyi(settings: Settings):
         lambda d: d["name"] == named_config, settings.lm_config.config_list
     )
     found_llm_conf = list(finding)[0]["conf"]
+    assert isinstance(found_llm_conf, TongyiLLMConf)
     assert found_llm_conf.provider == "tongyi"
     assert found_llm_conf.model == "qwen-max"
 
@@ -132,8 +128,27 @@ def test_azure_openai(settings: Settings):
 
 
 @pytest.mark.reverse_proxy
-def test_tongyi_proxy_base_url(settings: Settings):
+def test_tongyi_proxy_base_url():
     from langchain_community.chat_models.tongyi import ChatTongyi
+
+    settings = Settings.model_validate(
+        {
+            "lm_config": {
+                "config_list": [
+                    {
+                        "name": "proxy_dashscope",
+                        "conf": {
+                            "provider": "tongyi",
+                            "model": "qwen-turbo",
+                            "api_key": "${DASHSCOPE_API_KEY}",
+                            "base_url": "http://localhost:6880/api/v1",
+                        },
+                    }
+                ],
+                "x": {"proxy-tongyi": ["proxy_dashscope"]},
+            },
+        }
+    )
 
     llm = settings.lm_config.get("proxy-tongyi").create_langchain_chatmodel()
     assert isinstance(llm, ChatTongyi)

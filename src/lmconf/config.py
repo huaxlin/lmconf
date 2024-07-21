@@ -49,8 +49,6 @@ class OpenAICompatibleLLMConf(LLMConfBase):
             raise ValueError(
                 f"Unsupported convert to LangChain ChatModel with provider: {self.provider}"
             )
-        # TODO: inherit ChatTongyi to support override base_url
-        # from langchain_community.chat_models.tongyi import ChatTongyi
         return chat_model_cls(
             model=self.model,
             api_key=self.api_key,

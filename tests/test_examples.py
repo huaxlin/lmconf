@@ -25,22 +25,26 @@ def test_chatbot(examples_into_syspath):
     # fmt: off
     dotenv_content = dedent("""\
         lc_chatbot_SQLALCHEMY_DATABASE_URI=sqlite:///db.sqlite3
-        lc_chatbot_lm_config__config_list='{
-            "local": {"provider": "ollama",
-                    "model": "gemma:2b",
-                    "base_url": "http://localhost:11434"},
-            "azure_us": {"provider": "azure_openai",
-                        "model": "gpt-35-turbo",
-                        "base_url": "https://${COMPANY}-gpt.openai.azure.com",
-                        "api_key": "${AZURE_US_API_KEY}"},
-            "azure_je": {"provider": "azure_openai",
+        lc_chatbot_lm_config__config_list='[
+            {"name": "local",
+             "conf": {"provider": "ollama",
+                      "model": "gemma:2b",
+                      "base_url": "http://localhost:11434"}},
+            {"name": "azure_us",
+             "conf": {"provider": "azure_openai",
+                      "model": "gpt-35-turbo",
+                      "base_url": "https://${COMPANY}-gpt.openai.azure.com",
+                      "api_key": "${AZURE_US_API_KEY}"}},
+            {"name": "azure_je",
+             "conf": {"provider": "azure_openai",
                         "model": "gpt-35-turbo",
                         "base_url": "https://${COMPANY}-gpt-je.openai.azure.com",
-                        "api_key": "${AZURE_JE_API_KEY}"},
-            "zh_llm": {"provider": "tongyi",
-                    "model": "qwen-turbo",
-                    "api_key": "${DASHSCOPE_API_KEY}"}
-        }'
+                        "api_key": "${AZURE_JE_API_KEY}"}},
+            {"name": "zh_llm",
+             "conf": {"provider": "tongyi",
+                      "model": "qwen-turbo",
+                      "api_key": "${DASHSCOPE_API_KEY}"}}
+        ]'
         lc_chatbot_lm_config__x='{
             "chatbot": ["local"]
         }'

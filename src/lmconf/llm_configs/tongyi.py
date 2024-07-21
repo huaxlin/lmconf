@@ -1,5 +1,5 @@
 from typing_extensions import Literal
-from pydantic import field_validator
+from pydantic import model_validator
 from lmconf.config import OpenAICompatibleLLMConf
 
 
@@ -7,14 +7,14 @@ class TongyiLLMConf(OpenAICompatibleLLMConf):
     provider: Literal["tongyi"] = "tongyi"
     model: str = "qwen-turbo"
 
-    @field_validator("base_url", mode="after")
-    @classmethod
-    def set_dashscope_base_url(cls, v):
-        if v:
+    @model_validator(mode="after")
+    def set_dashscope_base_url(self):
+        # TODO: set base_http_api_url when dashscope.Generation.call is called
+        if self.base_url:
             import dashscope
 
-            dashscope.base_http_api_url = v
-        return v
+            dashscope.base_http_api_url = self.base_url
+        return self
 
     def create_langchain_chatmodel(self, **chatmodel_kwargs):
         from langchain_community.chat_models.tongyi import ChatTongyi
