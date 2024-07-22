@@ -28,7 +28,7 @@ def test_chatbot(examples_into_syspath):
         lc_chatbot_lm_config__config_list='[
             {"name": "local",
              "conf": {"provider": "ollama",
-                      "model": "gemma:2b",
+                      "model": "tinyllama",
                       "base_url": "http://localhost:11434"}},
             {"name": "azure_us",
              "conf": {"provider": "azure_openai",
@@ -62,7 +62,7 @@ def test_chatbot(examples_into_syspath):
     session_id = uuid.uuid4().hex
     chatbot = Chatbot(session_id)
 
-    msg1 = "Hi! I'm bob"
+    msg1 = "I'm Bob. What is the capital of France?"
     output1 = chatbot(msg1)
     print(output1)
     assert isinstance(output1, AIMessage)

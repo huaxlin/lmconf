@@ -1,16 +1,21 @@
 from typing import Optional
+from typing import TYPE_CHECKING
 
 from pydantic import BaseModel, Field
+
+if TYPE_CHECKING:
+    from langchain_core.language_models.chat_models import BaseChatModel
+    from langchain_core.language_models.llms import BaseLLM
 
 
 class LLMConfBase(BaseModel):
     provider: str = Field(description='e.g. "ollama", "openai", "tongyi", "azure_openai"')
     model: str = Field(description="default model if not set")
 
-    def create_langchain_chatmodel(self, *args, **kwargs):
+    def create_langchain_chatmodel(self, *args, **kwargs) -> "BaseChatModel":
         raise NotImplementedError()
 
-    def create_langchain_llm(self, *args, **kwargs):
+    def create_langchain_llm(self, *args, **kwargs) -> "BaseLLM":
         raise NotImplementedError()
 
 
