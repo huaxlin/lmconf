@@ -1,5 +1,6 @@
 # lmconf
 
+[![Downloads](https://static.pepy.tech/badge/lmconf)](https://pepy.tech/project/lmconf)
 
 ## Installation
 
