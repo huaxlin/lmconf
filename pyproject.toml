@@ -9,7 +9,7 @@ where = ["src/"]
 name = "lmconf"
 authors = [{ name = "huaxlin", email = "huaxlin33@gmail.com" }]
 readme = {file = "README.md", content-type = "text/markdown"}
-version = "0.0.4"
+version = "0.0.5"
 requires-python = ">=3.8"
 dependencies = [
   "pydantic>=2",
