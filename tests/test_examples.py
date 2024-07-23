@@ -9,7 +9,8 @@ from rich import print
 @pytest.fixture
 def examples_into_syspath(examples_dir: Path):
     try:
-        yield sys.path.insert(0, str(examples_dir))
+        sys.path.insert(0, str(examples_dir))
+        yield
     finally:
         sys.path.remove(str(examples_dir))
 
@@ -19,7 +20,7 @@ def test_chatbot(examples_into_syspath):
     from tempfile import TemporaryDirectory
     from textwrap import dedent
 
-    from chatbot import Chatbot, get_current_settings
+    from chatbot import Chatbot, get_current_settings  # type: ignore
     from langchain_core.messages import AIMessage
 
     # fmt: off

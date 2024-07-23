@@ -4,9 +4,10 @@ from tempfile import TemporaryDirectory
 from textwrap import dedent
 
 import pytest
-from rich import print
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from langchain_core.messages import HumanMessage, AIMessage
+from rich import print
+
 from lmconf import LMConfSettings
 from lmconf.llm_configs.tongyi import TongyiLLMConf
 
@@ -66,7 +67,9 @@ def settings():
 
 def test_local_ollama(settings: Settings):
     llm = settings.lm_config.get("chatbot").create_langchain_chatmodel(temperature=0.1)
-    messages = [HumanMessage(content="I'm Bob. What is the capital of France?")]
+    messages: list[BaseMessage] = [
+        HumanMessage(content="I'm Bob. What is the capital of France?")
+    ]
     output1 = llm.invoke(messages)
     print(output1)
     assert isinstance(output1, AIMessage) and isinstance(output1.content, str)

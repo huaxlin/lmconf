@@ -9,13 +9,13 @@ if TYPE_CHECKING:
         model_config: ClassVar[SettingsConfigDict]
 
         @classmethod
-        def get_current_settings(cls): ...  # noqa: E704
+        def get_current_settings(cls): ...
         @classmethod
-        def get_settings_from_env(cls): ...  # noqa: E704
+        def get_settings_from_env(cls): ...
 
 else:
 
-    class EnvCacheSettingsProtocol: ...  # noqa: E701
+    class EnvCacheSettingsProtocol: ...
 
 
 TBase = TypeVar("TBase", bound=EnvCacheSettingsProtocol)
