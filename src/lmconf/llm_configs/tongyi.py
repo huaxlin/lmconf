@@ -16,20 +16,30 @@ class TongyiLLMConf(OpenAICompatibleLLMConf):
             dashscope.base_http_api_url = self.base_url
         return self
 
-    def create_langchain_chatmodel(self, **chatmodel_kwargs):
+    def create_langchain_chatmodel(self, **lc_kwargs):
         from langchain_community.chat_models.tongyi import ChatTongyi
+
+        if "temperature" in lc_kwargs:
+            model_kwargs = lc_kwargs.pop("model_kwargs", {})
+            model_kwargs["temperature"] = lc_kwargs.pop("temperature")
+            lc_kwargs["model_kwargs"] = model_kwargs
 
         return ChatTongyi(
             model_name=self.model,
             dashscope_api_key=self.api_key,
-            **chatmodel_kwargs,
+            **lc_kwargs,
         )
 
-    def create_langchain_llm(self, **llm_kwargs):
+    def create_langchain_llm(self, **lc_kwargs):
         from langchain_community.llms.tongyi import Tongyi
+
+        if "temperature" in lc_kwargs:
+            model_kwargs = lc_kwargs.pop("model_kwargs", {})
+            model_kwargs["temperature"] = lc_kwargs.pop("temperature")
+            lc_kwargs["model_kwargs"] = model_kwargs
 
         return Tongyi(
             model_name=self.model,
             dashscope_api_key=self.api_key,
-            **llm_kwargs,
+            **lc_kwargs,
         )

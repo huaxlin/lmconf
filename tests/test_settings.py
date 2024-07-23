@@ -65,7 +65,7 @@ def settings():
 
 
 def test_local_ollama(settings: Settings):
-    llm = settings.lm_config.get("chatbot").create_langchain_chatmodel(temprature=0.1)
+    llm = settings.lm_config.get("chatbot").create_langchain_chatmodel(temperature=0.1)
     messages = [HumanMessage(content="I'm Bob. What is the capital of France?")]
     output1 = llm.invoke(messages)
     print(output1)
