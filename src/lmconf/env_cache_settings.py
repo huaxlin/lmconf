@@ -1,23 +1,39 @@
 import os
 from logging import getLogger
-from typing import Dict, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, ClassVar, Dict, Protocol, Type, TypeVar
 
 if TYPE_CHECKING:
-    from pydantic_settings import BaseSettings
+    from pydantic_settings import SettingsConfigDict
+
+    class EnvCacheSettingsProtocol(Protocol):
+        model_config: ClassVar[SettingsConfigDict]
+
+        @classmethod
+        def get_current_settings(cls): ...  # noqa: E704
+        @classmethod
+        def get_settings_from_env(cls): ...  # noqa: E704
+
+else:
+
+    class EnvCacheSettingsProtocol: ...  # noqa: E701
+
+
+TBase = TypeVar("TBase", bound=EnvCacheSettingsProtocol)
 
 logger = getLogger(__name__)
-
-_FROM_ENV_CACHE: Dict[int, "BaseSettings"] = {}
+_FROM_ENV_CACHE: Dict[int, Any] = {}
 
 
 class EnvCacheSettingsMixin:
 
     @classmethod
-    def get_current_settings(cls) -> "BaseSettings":
-        return cls.get_settings_from_env()
+    # def get_current_settings(cls):
+    def get_current_settings(cls: Type[TBase]) -> TBase:
+        return cls.get_settings_from_env()  # type: ignore
 
     @classmethod
-    def get_settings_from_env(cls) -> "BaseSettings":
+    # def get_settings_from_env(cls):
+    def get_settings_from_env(cls: Type[TBase]) -> TBase:
         """
         Returns a settings object populated with default values and overrides from
         environment variables, ignoring any values in profiles.
