@@ -28,8 +28,13 @@ langchain = [
   "langchain-community",
   "langchain-openai",
 ]
+# LLMs providers
+tongyi = [
+  "dashscope>=1.14.0"
+]
 
 test = [
+  "pydantic-settings",
   "pytest",
   "requests-mock",
   "pytest-httpx"
