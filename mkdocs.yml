@@ -1,0 +1,15 @@
+site_name: lmconf Documentation
+theme:
+  name: material
+  palette:
+    primary: purple
+    accent: light-blue
+  favicon: favicon.ico
+  # logo: logo.png
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - API Reference: api/index.md
+  - Contributing: contributing.md
+
