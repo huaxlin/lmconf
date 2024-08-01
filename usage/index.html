@@ -1,0 +1,803 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+    
+    
+      
+        <title>Usage - lmconf Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lmconf-usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="lmconf Documentation" class="md-header__button md-logo" aria-label="lmconf Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            lmconf Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="lmconf Documentation" class="md-nav__button md-logo" aria-label="lmconf Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    lmconf Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a .env file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing LLMs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-using-lmconf-with-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using lmconf with LangChain
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-llm-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom LLM Configurations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environmental-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environmental Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-a-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a .env file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing LLMs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-using-lmconf-with-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using lmconf with LangChain
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-llm-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom LLM Configurations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environmental-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environmental Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="lmconf-usage">lmconf Usage</h1>
+<p>This document provides a comprehensive guide on utilizing lmconf for configuring and managing large language models (LLMs) in your Python applications.</p>
+<h2 id="installation">Installation</h2>
+<p>Install lmconf using pip:</p>
+<pre><code class="language-bash">pip install lmconf
+</code></pre>
+<p>You can also install optional dependencies for specific LLM providers:</p>
+<ul>
+<li>LangChain integrations:</li>
+</ul>
+<p><code>bash
+  pip install lmconf[langchain]</code></p>
+<ul>
+<li>Tongyi (Alibaba Cloud):</li>
+</ul>
+<p><code>bash
+  pip install lmconf[tongyi]</code></p>
+<h2 id="basic-configuration">Basic Configuration</h2>
+<p>lmconf leverages environment variables and a structured configuration to define and manage LLM configurations. You can define your LLM configurations within a <code>.env</code> file or directly within your code.</p>
+<h3 id="using-a-env-file">Using a <code>.env</code> file</h3>
+<p>Create a <code>.env</code> file in your project root and configure your LLMs as follows:</p>
+<pre><code># Example .env file
+LMCONF_lm_config__config_list='[
+    {&quot;name&quot;: &quot;azure_us&quot;,
+     &quot;conf&quot;: {
+        &quot;provider&quot;: &quot;azure_openai&quot;,
+        &quot;model&quot;: &quot;gpt-35-turbo&quot;,
+        &quot;api_version&quot;: &quot;2023-05-15&quot;,
+        &quot;base_url&quot;: &quot;https://${COMPANY}-gpt.openai.azure.com&quot;,
+        &quot;api_key&quot;: &quot;${AZURE_US_API_KEY}&quot;
+     }},
+    {&quot;name&quot;: &quot;zh_llm&quot;,
+     &quot;conf&quot;: {
+        &quot;provider&quot;: &quot;tongyi&quot;,
+        &quot;model&quot;: &quot;qwen-max&quot;,
+        &quot;api_key&quot;: &quot;${DASHSCOPE_API_KEY}&quot;
+     }}
+]'
+
+LMCONF_lm_config__x='{
+    &quot;chatbot&quot;: [&quot;azure_us&quot;, &quot;gpt-35-turbo&quot;],
+    &quot;rag&quot;: [&quot;zh_llm&quot;, &quot;qwen-turbo&quot;]
+}'
+</code></pre>
+<p>Explanation:</p>
+<ul>
+<li><code>LMCONF_lm_config__config_list</code>: Defines a list of LLM configurations. Each configuration is a dictionary with:</li>
+<li>name: A unique identifier for the configuration.</li>
+<li>conf: A dictionary containing LLM-specific details like provider, model, API key, and base URL.</li>
+<li><code>LMCONF_lm_config__x</code>: Maps functionalities (like "chatbot" or "rag") to LLM configurations. This allows you to quickly select the appropriate LLM for a specific purpose.</li>
+</ul>
+<h2 id="using-code">Using code</h2>
+<p>You can also define your LLM configurations directly within your Python code:</p>
+<pre><code class="language-python">from pydantic_settings import BaseSettings, SettingsConfigDict
+from lmconf import LMConfSettings
+
+class Settings(BaseSettings, LMConfSettings):
+    # ... other settings ...
+
+    model_config = SettingsConfigDict(
+        env_file=&quot;.env&quot;,
+        env_prefix=&quot;LMCONF_&quot;,
+        env_nested_delimiter=&quot;__&quot;,
+    )
+
+settings = Settings()
+</code></pre>
+<h3 id="accessing-llms">Accessing LLMs</h3>
+<p>Once you have defined your configurations, you can use lmconf to retrieve and use the LLMs:</p>
+<pre><code class="language-python"># Example using Settings class
+chatbot_llm = settings.lm_config.get(&quot;chatbot&quot;).create_langchain_chatmodel(temperature=0.1)
+output = chatbot_llm.invoke(&quot;What is the capital of France?&quot;)
+print(output)
+
+# Example using LMConfig directly
+lm_config = LMConfig(
+    config_list=[
+        {
+            &quot;name&quot;: &quot;azure_us&quot;,
+            &quot;conf&quot;: {
+                &quot;provider&quot;: &quot;azure_openai&quot;,
+                &quot;model&quot;: &quot;gpt-35-turbo&quot;,
+                &quot;api_key&quot;: &quot;your-api-key&quot;,
+                &quot;base_url&quot;: &quot;https://your-company-gpt.openai.azure.com&quot;,
+                &quot;api_version&quot;: &quot;2023-05-15&quot;,
+            }
+        }
+    ],
+    x={
+        &quot;chatbot&quot;: [&quot;azure_us&quot;, &quot;gpt-35-turbo&quot;],
+    }
+)
+
+chatbot_llm = lm_config.get(&quot;chatbot&quot;).create_langchain_chatmodel(temperature=0.1)
+output = chatbot_llm.invoke(&quot;What is the capital of France?&quot;)
+print(output)
+</code></pre>
+<h2 id="example-using-lmconf-with-langchain">Example: Using lmconf with LangChain</h2>
+<p>This example demonstrates how to use lmconf with LangChain for creating a simple chatbot:</p>
+<pre><code class="language-python">from lmconf import LMConfSettings
+from langchain_community.chat_message_histories import SQLChatMessageHistory
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+class Settings(BaseSettings, LMConfSettings):
+    SQLALCHEMY_DATABASE_URI: str
+
+    model_config = SettingsConfigDict(
+        env_file=&quot;.env&quot;,
+        env_prefix=&quot;lc_chatbot_&quot;,
+        env_nested_delimiter=&quot;__&quot;,
+    )
+
+settings = Settings()
+
+class Chatbot:
+    def __init__(self, session_id: str):
+        self.session_id = session_id
+
+        llm = settings.lm_config.get(&quot;chatbot&quot;).create_langchain_chatmodel(temperature=0.1)
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                (&quot;system&quot;, &quot;You are a helpful assistant.&quot;),
+                MessagesPlaceholder(variable_name=&quot;history&quot;),
+                (&quot;human&quot;, &quot;{question}&quot;),
+            ]
+        )
+        chain = prompt | llm
+
+        self.chatbot = RunnableWithMessageHistory(
+            chain,
+            lambda session_id: SQLChatMessageHistory(session_id=session_id, connection=settings.SQLALCHEMY_DATABASE_URI),
+            input_messages_key=&quot;question&quot;,
+            history_messages_key=&quot;history&quot;,
+        )
+
+    def __call__(self, question):
+        message = self.chatbot.invoke({&quot;question&quot;: question}, config={&quot;configurable&quot;: {&quot;session_id&quot;: self.session_id}})
+        return message
+
+if __name__ == &quot;__main__&quot;:
+    import uuid
+    chatbot = Chatbot(uuid.uuid4().hex)
+
+    message = chatbot(&quot;Hello! I'm Bob.&quot;)
+    print(message)
+
+    message = chatbot(&quot;What's my name?&quot;)
+    print(message)
+</code></pre>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="custom-llm-configurations">Custom LLM Configurations</h3>
+<p>You can create custom LLM configuration classes by extending <code>LLMConfBase</code> from lmconf. This allows you to define provider-specific parameters and implement custom logic for creating LangChain models.</p>
+<h3 id="environmental-variables">Environmental Variables</h3>
+<p>lmconf utilizes environment variables for flexible configuration. You can set environment variables in your <code>.env</code> file or directly using shell commands.</p>
+<h3 id="caching">Caching</h3>
+<p><code>EnvCacheSettingsMixin</code> uses a caching mechanism to avoid unnecessary validation and improve performance when accessing LLM configurations from environment variables.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>lmconf simplifies the configuration and management of LLMs in your Python applications, providing a robust and flexible framework for integrating LLMs into your projects.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
