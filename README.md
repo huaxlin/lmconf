@@ -1,5 +1,7 @@
 # lmconf
 
+_Support for multiple LLM configurations in one application settings_
+
 [![Downloads](https://static.pepy.tech/badge/lmconf)](https://pepy.tech/project/lmconf)
 
 ## Installation
