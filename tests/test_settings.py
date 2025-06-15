@@ -28,7 +28,7 @@ def settings():
         lmconf_lm_config__config_list='[
             {"name": "local",
              "conf": {"provider": "ollama",
-                      "model": "tinyllama",
+                      "model": "gemma3:1b",
                       "base_url": "http://localhost:11434"}},
             {"name": "azure_us",
              "conf": {"provider": "azure_openai",
